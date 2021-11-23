@@ -111,3 +111,4 @@ C:\Users\guray\Desktop\GitKraken - repo\calisthenics-project-backend\calisthenic
 C:\Users\guray\Desktop\GitKraken - repo\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\obj\Debug\net5.0\calisthenics-backend.RazorTargetAssemblyInfo.cache
 C:\Users\guray\Desktop\GitKraken - repo\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\obj\Debug\net5.0\calisthenics-backend.csproj.CopyComplete
 C:\Users\guray\Desktop\GitKraken - repo\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\obj\Debug\net5.0\calisthenics-backend.genruntimeconfig.cache
+C:\Users\ander\Desktop\repos\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\bin\Debug\net5.0\calisthenics-backend.StaticWebAssets.xml

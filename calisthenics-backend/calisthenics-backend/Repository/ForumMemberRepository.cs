@@ -34,9 +34,10 @@ namespace calisthenics_backend.Repository
             throw new NotImplementedException();
         }
 
-        public Task<ForumMember> GetById(int id)
+        public ForumMember GetById(int id)
         {
-            throw new NotImplementedException();
+            var response = _context.ForumMembers.FirstOrDefault(x => x.Id == id);
+            return response;
         }
 
         public Task Update(ForumMember _object)
