@@ -5884,19 +5884,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ander\\.nuget\\packages\\": {}
+    "C:\\Users\\guray\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ander\\Desktop\\repos\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\calisthenics-backend.csproj",
+      "projectUniqueName": "C:\\Users\\guray\\Desktop\\GitKraken - repo\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\calisthenics-backend.csproj",
       "projectName": "calisthenics-backend",
-      "projectPath": "C:\\Users\\ander\\Desktop\\repos\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\calisthenics-backend.csproj",
-      "packagesPath": "C:\\Users\\ander\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ander\\Desktop\\repos\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\obj\\",
+      "projectPath": "C:\\Users\\guray\\Desktop\\GitKraken - repo\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\calisthenics-backend.csproj",
+      "packagesPath": "C:\\Users\\guray\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\guray\\Desktop\\GitKraken - repo\\calisthenics-project-backend\\calisthenics-backend\\calisthenics-backend\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ander\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\guray\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5953,7 +5953,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

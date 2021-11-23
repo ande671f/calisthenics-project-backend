@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using calisthenics_backend.Repository;
 using calisthenics_backend.Interface;
+using calisthenics_backend.Models;
 
 namespace calisthenics_backend
 {
@@ -40,7 +41,7 @@ namespace calisthenics_backend
 			services.AddDbContext<Context>(options =>
 			options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
 
-			services.AddScoped<IWeatherForecast, WeatherForecastRepository>();
+			services.AddScoped<IRepository<ForumMember>, ForumMemberRepository>();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

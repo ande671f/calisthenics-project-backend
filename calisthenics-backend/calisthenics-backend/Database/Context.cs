@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using calisthenics_backend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +9,9 @@ namespace calisthenics_backend.Database
 {
 	public class Context : DbContext
 	{
-		public DbSet<WeatherForecast> WeatherForecasts { get; set; }
+        public DbSet<ForumMember> ForumMembers { get; set; }
 
-		public Context(DbContextOptions<Context> options)
+        public Context(DbContextOptions<Context> options)
 			: base(options)
 		{
 			Database.EnsureCreated();
