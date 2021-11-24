@@ -10,6 +10,7 @@ namespace calisthenics_backend.Database
 	public class Context : DbContext
 	{
         public DbSet<ForumMember> ForumMembers { get; set; }
+		public DbSet<CommunityMember> CommunityMembers { get; set; }
 
         public Context(DbContextOptions<Context> options)
 			: base(options)

@@ -48,7 +48,9 @@ namespace calisthenics_backend.Repository
 
 		public async Task<ForumMember> GetById(int id)
 		{
-			var response = await _context.ForumMembers.FindAsync(id);
+			var response = await _context.ForumMembers
+				.Include(c => c.CommunityMember)
+				.FirstAsync(x => x.ForumMemberId == id);
 			return response;
 		}
 
@@ -59,7 +61,7 @@ namespace calisthenics_backend.Repository
 
 		private bool ForumMemberExists(long id)
 		{
-			return _context.ForumMembers.Any(e => e.Id == id);
+			return _context.ForumMembers.Any(e => e.ForumMemberId == id);
 		}
 	}
 }

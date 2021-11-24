@@ -57,7 +57,7 @@ namespace calisthenics_backend.Controllers
 		public async Task<ActionResult> CreateForumMemeber(ForumMember forumMember)
 		{
 			await _forumMemberRepository.Create(forumMember);
-			return CreatedAtAction(nameof(GetForumMember), new { id = forumMember.Id }, forumMember);
+			return CreatedAtAction(nameof(GetForumMember), new { id = forumMember.ForumMemberId }, forumMember);
 		}
 	}
 }
