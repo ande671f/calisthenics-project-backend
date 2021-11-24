@@ -28,6 +28,8 @@ namespace calisthenics_backend
 
 		public IConfiguration Configuration { get; }
 
+		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
@@ -42,11 +44,21 @@ namespace calisthenics_backend
 			options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
 
 			services.AddScoped<IRepository<ForumMember>, ForumMemberRepository>();
+
+			services.AddCors(options =>
+			{
+				options.AddPolicy(name: MyAllowSpecificOrigins,
+								  builder =>
+								  {
+									  builder.WithOrigins("http://localhost:8080");
+								  });
+			});
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
+
 			if (env.IsDevelopment())
 			{
 				app.UseDeveloperExceptionPage();
@@ -57,6 +69,8 @@ namespace calisthenics_backend
 			app.UseHttpsRedirection();
 
 			app.UseRouting();
+
+			app.UseCors(MyAllowSpecificOrigins);
 
 			app.UseAuthorization();
 

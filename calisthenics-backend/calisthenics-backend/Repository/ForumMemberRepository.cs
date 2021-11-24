@@ -1,6 +1,7 @@
 ﻿using calisthenics_backend.Database;
 using calisthenics_backend.Interface;
 using calisthenics_backend.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,41 +9,57 @@ using System.Threading.Tasks;
 
 namespace calisthenics_backend.Repository
 {
-    public class ForumMemberRepository : IRepository<ForumMember>
-    {
-        // dependency injection, scoped
-        private readonly Context _context;
+	public class ForumMemberRepository : IRepository<ForumMember>
+	{
+		// dependency injection, scoped
+		private readonly Context _context;
 
-        public ForumMemberRepository(Context context)
-        {
-            _context = context;
-        }
+		public ForumMemberRepository(Context context)
+		{
+			_context = context;
+		}
 
-        public async Task Create(ForumMember forumMember)
-        {
-            await _context.ForumMembers.AddAsync(forumMember);
-            await _context.SaveChangesAsync();
-        }
+		public async Task Create(ForumMember forumMember)
+		{
+			_context.ForumMembers.Add(forumMember);
+			await _context.SaveChangesAsync();
+		}
 
-        public Task Delete(ForumMember _object)
-        {
-            throw new NotImplementedException();
-        }
+		public async Task Delete(int id)
+		{
+			var forumMember = await _context.ForumMembers.FindAsync(id);
 
-        public Task<IEnumerable<ForumMember>> GetAll()
-        {
-            throw new NotImplementedException();
-        }
+			//if (forumMember == null)
+			//{
+			//	return NotFound();
+			//}
 
-        public ForumMember GetById(int id)
-        {
-            var response = _context.ForumMembers.FirstOrDefault(x => x.Id == id);
-            return response;
-        }
+			_context.ForumMembers.Remove(forumMember);
+			await _context.SaveChangesAsync();
 
-        public Task Update(ForumMember _object)
-        {
-            throw new NotImplementedException();
-        }
-    }
+			//return NoContent();
+		}
+
+		public async Task<IEnumerable<ForumMember>> GetAll()
+		{
+			var response = await _context.ForumMembers.ToListAsync();
+			return response;
+		}
+
+		public async Task<ForumMember> GetById(int id)
+		{
+			var response = await _context.ForumMembers.FindAsync(id);
+			return response;
+		}
+
+		public Task Update(ForumMember _object)
+		{
+			throw new NotImplementedException();
+		}
+
+		private bool ForumMemberExists(long id)
+		{
+			return _context.ForumMembers.Any(e => e.Id == id);
+		}
+	}
 }

@@ -21,20 +21,43 @@ namespace calisthenics_backend.Controllers
 			_forumMemberRepository = forumMemberRepository;
 		}
 
-		[HttpPost]
-		public async Task<ActionResult> Post(ForumMember forumMember)
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<ForumMember>>> GetForumMembers()
 		{
-			await _forumMemberRepository.Create(forumMember);
+			IEnumerable<ForumMember> response;
+			try
+			{
+				response = await _forumMemberRepository.GetAll();
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
 
-			return CreatedAtAction(nameof(GetById), new { id = forumMember.Id }, forumMember);
+			return response.ToList();
 		}
 
-		[HttpGet]
-		public ActionResult<ForumMember> GetById(int id)
+		[HttpGet("{id}")]
+		public async Task<ActionResult<ForumMember>> GetForumMember(int id)
 		{
-			ForumMember response = _forumMemberRepository.GetById(id);
+			ForumMember response;
+			try
+			{
+				response = await _forumMemberRepository.GetById(id);
+			}
+			catch (Exception)
+			{
+				return BadRequest();
+			}
 
 			return response;
+		}
+
+		[HttpPost]
+		public async Task<ActionResult> CreateForumMemeber(ForumMember forumMember)
+		{
+			await _forumMemberRepository.Create(forumMember);
+			return CreatedAtAction(nameof(GetForumMember), new { id = forumMember.Id }, forumMember);
 		}
 	}
 }

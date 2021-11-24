@@ -13,8 +13,8 @@ namespace calisthenics_backend.Interface
 
         public Task<IEnumerable<T>> GetAll();
 
-        public T GetById(int id);
+        public Task<T> GetById(int id);
 
-        public Task Delete(T _object);
+        public Task Delete(int id);
     }
 }
