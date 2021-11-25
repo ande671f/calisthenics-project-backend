@@ -7,7 +7,7 @@ namespace calisthenics_backend.Models
 {
     public class CommunityMember
     {
-        public int CommunityMemberId { get; set; }
+        public string CommunityMemberId { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string PostalCode { get; set; }
@@ -15,6 +15,6 @@ namespace calisthenics_backend.Models
 
 
         // Navigation properties
-        public int ForumMemberId { get; set; }
+        public string ForumMemberId { get; set; }
     }
 }

@@ -20,7 +20,7 @@ namespace calisthenics_backend.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<CommunityMember>> GetCommunityMember(int id)
+		public async Task<ActionResult<CommunityMember>> GetCommunityMember(string id)
 		{
 			CommunityMember response;
 			try
@@ -40,6 +40,20 @@ namespace calisthenics_backend.Controllers
 		{
 			await _communityMemberRepository.Create(communityMember);
 			return CreatedAtAction(nameof(GetCommunityMember), new { id = communityMember.CommunityMemberId }, communityMember);
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> DeleteCommunityMember(string id)
+		{
+			await _communityMemberRepository.Delete(id);
+			return NoContent();
+		}
+
+		[HttpPut]
+		public async Task<ActionResult> UpdateCommunityMember(string id, CommunityMember communityMember)
+		{
+			await _communityMemberRepository.Update(id, communityMember);
+			return NoContent();
 		}
 	}
 }

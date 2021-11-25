@@ -25,7 +25,7 @@ namespace calisthenics_backend.Repository
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task Delete(int id)
+		public async Task Delete(string id)
 		{
 			var forumMember = await _context.ForumMembers.FindAsync(id);
 
@@ -42,11 +42,13 @@ namespace calisthenics_backend.Repository
 
 		public async Task<IEnumerable<ForumMember>> GetAll()
 		{
-			var response = await _context.ForumMembers.ToListAsync();
+			var response = await _context.ForumMembers
+				.Include(c => c.CommunityMember)
+				.ToListAsync();
 			return response;
 		}
 
-		public async Task<ForumMember> GetById(int id)
+		public async Task<ForumMember> GetById(string id)
 		{
 			var response = await _context.ForumMembers
 				.Include(c => c.CommunityMember)
@@ -54,12 +56,12 @@ namespace calisthenics_backend.Repository
 			return response;
 		}
 
-		public Task Update(ForumMember _object)
+		public Task Update(string id, ForumMember _object)
 		{
 			throw new NotImplementedException();
 		}
 
-		private bool ForumMemberExists(long id)
+		private bool ForumMemberExists(string id)
 		{
 			return _context.ForumMembers.Any(e => e.ForumMemberId == id);
 		}

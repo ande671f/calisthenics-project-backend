@@ -38,7 +38,7 @@ namespace calisthenics_backend.Controllers
 		}
 
 		[HttpGet("{id}")]
-		public async Task<ActionResult<ForumMember>> GetForumMember(int id)
+		public async Task<ActionResult<ForumMember>> GetForumMember(string id)
 		{
 			ForumMember response;
 			try
@@ -54,10 +54,17 @@ namespace calisthenics_backend.Controllers
 		}
 
 		[HttpPost]
-		public async Task<ActionResult> CreateForumMemeber(ForumMember forumMember)
+		public async Task<ActionResult> CreateForumMember(ForumMember forumMember)
 		{
 			await _forumMemberRepository.Create(forumMember);
 			return CreatedAtAction(nameof(GetForumMember), new { id = forumMember.ForumMemberId }, forumMember);
+		}
+
+		[HttpDelete("{id}")]
+		public async Task<ActionResult> DeleteForumMember(string id)
+		{
+			await _forumMemberRepository.Delete(id);
+			return NoContent();
 		}
 	}
 }

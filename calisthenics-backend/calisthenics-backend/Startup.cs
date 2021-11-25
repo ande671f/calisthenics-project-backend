@@ -19,68 +19,70 @@ using calisthenics_backend.Models;
 
 namespace calisthenics_backend
 {
-    public class Startup
-    {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+	public class Startup
+	{
+		public Startup(IConfiguration configuration)
+		{
+			Configuration = configuration;
+		}
 
-        public IConfiguration Configuration { get; }
+		public IConfiguration Configuration { get; }
 
-        readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+		readonly string MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-        // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
-        {
+		// This method gets called by the runtime. Use this method to add services to the container.
+		public void ConfigureServices(IServiceCollection services)
+		{
 
-            services.AddControllers().AddNewtonsoftJson(options =>
-                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "calisthenics_backend", Version = "v1" });
-            });
+			services.AddControllers().AddNewtonsoftJson(options =>
+				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+			services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "calisthenics_backend", Version = "v1" });
+			});
 
-            services.AddDbContext<Context>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+			services.AddDbContext<Context>(options =>
+			options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
 
-            services.AddScoped<IRepository<ForumMember>, ForumMemberRepository>();
-            services.AddScoped<IRepository<CommunityMember>, CommunityMemberRepository>();
+			services.AddScoped<IRepository<ForumMember>, ForumMemberRepository>();
+			services.AddScoped<IRepository<CommunityMember>, CommunityMemberRepository>();
 
 
-            services.AddCors(options =>
-            {
-                options.AddPolicy(name: MyAllowSpecificOrigins,
-                                  builder =>
-                                  {
-                                      builder.WithOrigins("http://localhost:8080");
-                                  });
-            });
-        }
+			services.AddCors(options =>
+			{
+				options.AddPolicy(name: MyAllowSpecificOrigins,
+								  builder =>
+								  {
+									  builder.AllowAnyOrigin();
+									  builder.AllowAnyHeader();
+									  builder.AllowAnyMethod();
+								  });
+			});
+		}
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
-        {
+		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		{
 
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "calisthenics_backend v1"));
-            }
+			if (env.IsDevelopment())
+			{
+				app.UseDeveloperExceptionPage();
+				app.UseSwagger();
+				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "calisthenics_backend v1"));
+			}
 
-            app.UseHttpsRedirection();
+			app.UseHttpsRedirection();
 
-            app.UseRouting();
+			app.UseRouting();
 
-            app.UseCors(MyAllowSpecificOrigins);
+			app.UseCors(MyAllowSpecificOrigins);
 
-            app.UseAuthorization();
+			app.UseAuthorization();
 
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
-        }
-    }
+			app.UseEndpoints(endpoints =>
+			{
+				endpoints.MapControllers();
+			});
+		}
+	}
 }
