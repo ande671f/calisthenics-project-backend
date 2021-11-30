@@ -11,6 +11,9 @@ namespace calisthenics_backend.Database
 	{
         public DbSet<ForumMember> ForumMembers { get; set; }
 		public DbSet<CommunityMember> CommunityMembers { get; set; }
+        public DbSet<ForumCategory> ForumCategories { get; set; }
+        public DbSet<ForumPost> ForumPosts { get; set; }
+        public DbSet<ForumComment> ForumComments { get; set; }
 
         public Context(DbContextOptions<Context> options)
 			: base(options)
