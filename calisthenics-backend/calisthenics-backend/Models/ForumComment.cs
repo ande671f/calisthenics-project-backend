@@ -12,6 +12,7 @@ namespace calisthenics_backend.Models
         public DateTime Date { get; set; }
 
         public string ForumPostId { get; set; }
-
+        public string ForumMemberId { get; set; }
+        public ForumMember ForumMember { get; set; }
     }
 }

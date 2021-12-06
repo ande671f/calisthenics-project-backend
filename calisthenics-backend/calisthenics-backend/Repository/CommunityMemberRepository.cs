@@ -86,5 +86,8 @@ namespace calisthenics_backend.Repository
         {
             return _context.CommunityMembers.Any(e => e.CommunityMemberId == id);
         }
+
+        public bool Exists(string id) =>
+            _context.CommunityMembers.Any(e => e.CommunityMemberId == id);
     }
 }

@@ -24,26 +24,38 @@ namespace calisthenics_backend.Repository
             await _context.SaveChangesAsync();
         }
 
-        public Task Delete(string id)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<IEnumerable<ForumCategory>> GetAll()
+        public async Task<IEnumerable<ForumCategory>> GetAll()
         {
-            throw new NotImplementedException();
+            var response = await _context.ForumCategories
+                .Include(f => f.ForumPosts)
+                .ToListAsync();
+            return response;
         }
 
         public async Task<ForumCategory> GetById(string id)
         {
             var response = await _context.ForumCategories
+               .Include(f => f.ForumPosts)
                .FirstAsync(x => x.ForumCategoryId == id);
             return response;
         }
 
-        public Task Update(string id, ForumCategory _object)
+        public async Task Update(string id, ForumCategory forumCategory)
         {
-            throw new NotImplementedException();
+            _context.Entry(forumCategory).State = EntityState.Modified;
+
+            await _context.SaveChangesAsync();
         }
+
+        public async Task Delete(string id)
+        {
+            ForumCategory forumCategory = await _context.ForumCategories.FindAsync(id);
+            _context.ForumCategories.Remove(forumCategory);
+            await _context.SaveChangesAsync();
+        }
+
+        public bool Exists(string id) =>
+            _context.ForumCategories.Any(e => e.ForumCategoryId == id);
     }
 }

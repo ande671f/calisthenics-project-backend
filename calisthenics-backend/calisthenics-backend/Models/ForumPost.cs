@@ -12,8 +12,10 @@ namespace calisthenics_backend.Models
         public string Description { get; set; }
         public DateTime Date { get; set; }
 
+        // navigation properties
         public List<ForumComment> ForumComments { get; set; }
-
         public string ForumCategoryId { get; set; }
+        public string ForumMemberId { get; set; }
+        public ForumMember ForumMember { get; set; }
     }
 }
