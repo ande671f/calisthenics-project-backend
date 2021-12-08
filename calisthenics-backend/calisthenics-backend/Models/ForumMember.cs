@@ -14,5 +14,6 @@ namespace calisthenics_backend.Models
 
         // Navigation properties
         public CommunityMember CommunityMember { get; set; }
+        public List<ForumPost> ForumPosts { get; set; }
     }
 }

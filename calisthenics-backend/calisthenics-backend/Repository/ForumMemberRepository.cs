@@ -66,5 +66,8 @@ namespace calisthenics_backend.Repository
 		{
 			return _context.ForumMembers.Any(e => e.ForumMemberId == id);
 		}
+
+		public bool Exists(string id) =>
+			_context.ForumMembers.Any(e => e.ForumMemberId == id);
 	}
 }
