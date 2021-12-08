@@ -46,7 +46,9 @@ namespace calisthenics_backend
 
 			services.AddScoped<IRepository<ForumMember>, ForumMemberRepository>();
 			services.AddScoped<IRepository<CommunityMember>, CommunityMemberRepository>();
-
+			services.AddScoped<IRepository<Workout>, WorkoutRepository>();
+			services.AddScoped<IRepository<WorkoutLocation>, WorkoutLocationRepository>();
+			services.AddScoped<IRepository<WorkoutType>, WorkoutTypeRepository>();
 
 			services.AddCors(options =>
 			{
