@@ -33,6 +33,16 @@ namespace calisthenics_backend.Repository
             return forumPosts;
         }
 
+        /*
+        public async Task<IEnumerable<ForumPost>> GetAllById(string id)
+        {
+            List<ForumPost> forumPostsCategory = await _context.ForumPosts
+                .Include(f => f.ForumComments)
+                .ToListAsync();
+            return forumPostsCategory;
+        }
+        */
+
         public async Task<ForumPost> GetById(string id)
         {
             ForumPost forumPost = await _context.ForumPosts

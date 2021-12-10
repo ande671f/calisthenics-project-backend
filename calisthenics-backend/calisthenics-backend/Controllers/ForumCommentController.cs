@@ -1,4 +1,5 @@
-﻿using calisthenics_backend.Interface;
+﻿using calisthenics_backend.Database;
+using calisthenics_backend.Interface;
 using calisthenics_backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace calisthenics_backend.Controllers
     public class ForumCommentController : ControllerBase
     {
         private IRepository<ForumComment> _forumCommentRepository;
+        private readonly Context _context;
 
-        public ForumCommentController(IRepository<ForumComment> forumCommentRepository)
+        public ForumCommentController(IRepository<ForumComment> forumCommentRepository, Context context)
         {
             _forumCommentRepository = forumCommentRepository;
+            _context = context;
         }
 
 
@@ -35,6 +38,15 @@ namespace calisthenics_backend.Controllers
         {
             IEnumerable<ForumComment> forumCommentsResponse = await _forumCommentRepository.GetAll();
             return forumCommentsResponse.ToList();
+        }
+
+        [HttpGet("GetForumCommentsByPostId/{postId}")]
+        public async Task<ActionResult<IEnumerable<ForumComment>>> GetForumCommentsByPostId(string postId)
+        {
+            List<ForumComment> forumCommentsResponse = await _context.ForumComments.Where(e => e.ForumPostId == postId)
+                .Include(f => f.ForumMember)
+                .ToListAsync();
+            return forumCommentsResponse;
         }
 
         [HttpGet("{id}")]

@@ -1,4 +1,5 @@
-﻿using calisthenics_backend.Interface;
+﻿using calisthenics_backend.Database;
+using calisthenics_backend.Interface;
 using calisthenics_backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +15,16 @@ namespace calisthenics_backend.Controllers
     public class ForumPostController : ControllerBase
     {
         private IRepository<ForumPost> _forumPostRepository;
+        private readonly Context _context;
 
-        public ForumPostController(IRepository<ForumPost> forumPostRepository)
+        public ForumPostController(IRepository<ForumPost> forumPostRepository, Context context)
         {
             _forumPostRepository = forumPostRepository;
+            _context = context;
         }
 
+    
+        
         [HttpPost]
         public async Task<ActionResult<ForumPost>> CreateForumPost(ForumPost forumPost)
         {
@@ -35,6 +40,17 @@ namespace calisthenics_backend.Controllers
             IEnumerable<ForumPost> forumPostsResponse = await _forumPostRepository.GetAll();
             return forumPostsResponse.ToList();
         }
+
+        
+        [HttpGet("GetForumPostsByCategoryId/{categoryId}")]
+        public async Task<ActionResult<IEnumerable<ForumPost>>> GetForumPostsByCategoryId(string categoryId)
+        {
+            List<ForumPost> forumPostsResponse = await _context.ForumPosts.Where(e => e.ForumCategoryId == categoryId)
+                .Include(c => c.ForumCategory)
+                .ToListAsync();
+            return forumPostsResponse;
+        }
+        
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ForumPost>> GetForumPost(string id)
