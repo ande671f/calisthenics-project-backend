@@ -12,9 +12,13 @@ namespace calisthenics_backend.Models
         public string Address { get; set; }
         public string PostalCode { get; set; }
         public string City { get; set; }
+		public bool IsInstructor { get; set; }
 
 
-        // Navigation properties
-        public string ForumMemberId { get; set; }
+		// Navigation properties
+		public string ForumMemberId { get; set; }
+        
+        public ICollection<Workout> Workouts { get; set; }
+        public List<CommunityMemberWorkout> CommunityMemberWorkout { get; set; }
     }
 }

@@ -52,6 +52,7 @@ namespace calisthenics_backend.Repository
 		{
 			var response = await _context.ForumMembers
 				.Include(c => c.CommunityMember)
+				.ThenInclude(w => w.Workouts)
 				.FirstAsync(x => x.ForumMemberId == id);
 			return response;
 		}
