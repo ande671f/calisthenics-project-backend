@@ -15,6 +15,7 @@ namespace calisthenics_backend.Models
         // navigation properties
         public List<ForumComment> ForumComments { get; set; }
         public string ForumCategoryId { get; set; }
+        public ForumCategory ForumCategory { get; set; }
         public string ForumMemberId { get; set; }
         public ForumMember ForumMember { get; set; }
     }
