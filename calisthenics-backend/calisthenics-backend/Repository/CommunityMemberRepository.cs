@@ -50,6 +50,7 @@ namespace calisthenics_backend.Repository
         public async Task<CommunityMember> GetById(string id)
         {
             var response = await _context.CommunityMembers
+                .Include(p => p.PersonalProgress)
                 .FirstAsync(x => x.CommunityMemberId == id);
             return response;
         }

@@ -29,6 +29,11 @@ namespace calisthenics_backend.Repository
 			throw new NotImplementedException();
 		}
 
+		public bool Exists(string id)
+		{
+			throw new NotImplementedException();
+		}
+
 		public async Task<IEnumerable<WorkoutType>> GetAll()
 		{
 			var response = await _context.WorkoutTypes

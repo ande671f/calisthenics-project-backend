@@ -17,8 +17,9 @@ namespace calisthenics_backend.Models
 
 		// Navigation properties
 		public string ForumMemberId { get; set; }
-        
-        public ICollection<Workout> Workouts { get; set; }
+
+		public PersonalProgress PersonalProgress { get; set; }
+		public ICollection<Workout> Workouts { get; set; }
         public List<CommunityMemberWorkout> CommunityMemberWorkout { get; set; }
     }
 }

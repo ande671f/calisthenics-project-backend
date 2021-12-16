@@ -52,7 +52,10 @@ namespace calisthenics_backend.Repository
 		{
 			var response = await _context.ForumMembers
 				.Include(c => c.CommunityMember)
-				.ThenInclude(w => w.Workouts)
+					.ThenInclude(w => w.Workouts)
+				.Include(c => c.CommunityMember)
+					.ThenInclude(p => p.PersonalProgress)
+						.ThenInclude(w => w.WeightListings.OrderBy(d => d.Date))
 				.FirstAsync(x => x.ForumMemberId == id);
 			return response;
 		}

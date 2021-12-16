@@ -15,6 +15,9 @@ namespace calisthenics_backend.Database
         public DbSet<ForumPost> ForumPosts { get; set; }
         public DbSet<ForumComment> ForumComments { get; set; }
 
+		public DbSet<PersonalProgress> PersonalProgresses { get; set; }
+		public DbSet<WeightListing> WeightListings { get; set; }
+
 		public DbSet<Workout> Workouts { get; set; }
 		public DbSet<WorkoutType> WorkoutTypes { get; set; }
 		public DbSet<WorkoutLocation> WorkoutLocations { get; set; }
