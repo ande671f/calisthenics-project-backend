@@ -118,3 +118,4 @@ C:\Users\guray\Desktop\GitKraken - repo\calisthenics-project-backend\calisthenic
 C:\Users\ander\Desktop\repos\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\ander\Desktop\repos\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\ander\Desktop\repos\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\ander\Desktop\repos\calisthenics-project-backend\calisthenics-backend\calisthenics-backend\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -17,10 +17,8 @@ namespace calisthenics_backend.Interface
 
         public Task Delete(string id);
 
-        // for update method
         public bool Exists(string id);
 
-        // for getAllId Method
-        //public Task<IEnumerable<T>> GetAllById();
     }
 }
+

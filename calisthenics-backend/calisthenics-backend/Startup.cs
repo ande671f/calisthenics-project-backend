@@ -16,6 +16,8 @@ using System.Threading.Tasks;
 using calisthenics_backend.Repository;
 using calisthenics_backend.Interface;
 using calisthenics_backend.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace calisthenics_backend
 {
@@ -33,9 +35,23 @@ namespace calisthenics_backend
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
+			services
+				.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+				.AddJwtBearer(options =>
+				{
+					options.Authority = "https://securetoken.google.com/AIzaSyB46gBisxgEnD9m6Wzz3jCYVLLTfeOfbMM";
+					options.TokenValidationParameters = new TokenValidationParameters
+					{
+						ValidateIssuer = true,
+						ValidIssuer = "https://securetoken.google.com/AIzaSyB46gBisxgEnD9m6Wzz3jCYVLLTfeOfbMM",
+						ValidateAudience = true,
+						ValidAudience = "AIzaSyB46gBisxgEnD9m6Wzz3jCYVLLTfeOfbMM",
+						ValidateLifetime = true
+					};
+				});
 
 			services.AddControllers().AddNewtonsoftJson(options =>
-				options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
+					options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo { Title = "calisthenics_backend", Version = "v1" });
@@ -81,6 +97,8 @@ namespace calisthenics_backend
 			app.UseRouting();
 
 			app.UseCors(MyAllowSpecificOrigins);
+
+			app.UseAuthentication();
 
 			app.UseAuthorization();
 

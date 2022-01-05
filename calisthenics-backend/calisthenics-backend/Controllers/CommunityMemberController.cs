@@ -1,5 +1,6 @@
 ﻿using calisthenics_backend.Interface;
 using calisthenics_backend.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace calisthenics_backend.Controllers
 			_communityMemberRepository = communityMemberRepository;
 		}
 
+		[Authorize]
 		[HttpGet("{id}")]
 		public async Task<ActionResult<CommunityMember>> GetCommunityMember(string id)
 		{
