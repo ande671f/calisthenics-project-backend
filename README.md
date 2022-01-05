@@ -1,14 +1,12 @@
 ## General info
-This project is a webapplication for Calisthenics Odense
+This project is an API for Calisthenics Odense
 	
 ## Technologies
 Project is created with:
-* Vue 3
+* ASP.NET 5.0
 
 ## Setup
-To run this project, install it locally using npm:
+To run this project, open it with Visual Studio or Visual Code
 
-```
-$ npm install
-$ npm run serve
-```
+## Database
+You need authorization to the SQL database to run the API
